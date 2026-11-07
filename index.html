@@ -175,19 +175,24 @@ blockquote.float{animation:bob 6s ease-in-out infinite;animation-delay:calc(var(
   .cards,.work,.mini{grid-template-columns:1fr}
   section{padding-block:46px}
   .polaroid{transform:none}
+  .nav .wrap{gap:8px}
+  .nav .links{flex:1;gap:0}
+  .nav .links a{padding:8px 10px;font-size:.84rem}
+  .tbtn .lbl{display:none}
+  .tbtn{padding:8px 12px;font-size:1rem;line-height:1}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Main"><div class="wrap"><a class="brand" href="#top">Elaiza Marie Yap</a><div class="links"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></div><button type="button" id="theme" class="tbtn">Light / Dark</button></div><div class="progress" id="progress"></div></nav>
+<nav class="nav" aria-label="Main"><div class="wrap"><div class="links"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></div><button type="button" id="theme" class="tbtn" aria-label="Switch light or dark mode">&#9680; <span class="lbl">Light / Dark</span></button></div><div class="progress" id="progress"></div></nav>
 <header class="hero" id="top">
   <div class="wrap grid">
     <div>
       <h1>Elaiza Marie Yap</h1>
       <p class="sub">Customer success specialist and virtual assistant who keeps your inbox, clients, CRM and community moving, so you can focus on growing the business.</p>
       <div class="chips"><span class="chip">Manila, Philippines</span><span class="chip">Remote since 2015</span><span class="chip">10+ years</span></div>
-      <div class="cta"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#testimonials">Client love</a></div>
+      <div class="cta"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#testimonials">Testimonials</a></div>
     </div>
     <div>
       <div class="polaroid">
