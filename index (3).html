@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elaiza Yap Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
+<style>
+/* Layout: espresso hero with polaroid-style intro video, dark strip of tools, taupe about band with a notes card, paper services section with dark window cards. */
+:root{
+  --bg:#EFEDE9; --surface:#FFFFFF; --ink:#1F1718; --muted:#6A5E59; --line:#D9D3CB;
+  --card:#1F1718; --card-fg:#F3EEE8; --card-muted:#C3B8B0;
+  --taupe:#B8A999; --taupe-ink:#1F1718;
+  --hero-bg:#2B2120; --hero-fg:#F7F3EE; --hero-muted:#CFC4BB; --pill:#EFE9E2; --pill-ink:#1F1718;
+  --sans:'Inter Tight','Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161011; --surface:#231A1B; --ink:#F3EEE8; --muted:#BDB1A9; --line:#3A2E2D;
+  --card:#2C2223; --card-fg:#F3EEE8; --card-muted:#C3B8B0;
+  --taupe:#4B403A; --taupe-ink:#F3EEE8;
+  --hero-bg:#201718; --hero-fg:#F7F3EE; --hero-muted:#CFC4BB; --pill:#EFE9E2; --pill-ink:#1F1718; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161011; --surface:#231A1B; --ink:#F3EEE8; --muted:#BDB1A9; --line:#3A2E2D;
+  --card:#2C2223; --card-fg:#F3EEE8; --card-muted:#C3B8B0;
+  --taupe:#4B403A; --taupe-ink:#F3EEE8;
+  --hero-bg:#201718; --hero-fg:#F7F3EE; --hero-muted:#CFC4BB; --pill:#EFE9E2; --pill-ink:#1F1718; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);margin:0}
+:focus-visible{outline:3px solid var(--taupe);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:64px}
+h1,h2,h3{font-family:var(--sans);font-weight:800;line-height:.95;letter-spacing:-.035em;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.6rem,7vw,4.4rem)}
+.btn{display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;font-weight:600;text-decoration:none;background:var(--pill);color:var(--pill-ink)}
+.btn.ghost{background:transparent;color:var(--hero-fg);border:1.5px solid var(--hero-muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--pill-ink)}
+
+/* hero */
+.hero{background:radial-gradient(120% 90% at 85% 0%,#4A3A36 0%,var(--hero-bg) 60%);color:var(--hero-fg);padding-block:64px 72px}
+.hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.4rem);letter-spacing:-.04em;line-height:1}
+.hero p.sub{color:var(--hero-muted);max-width:40ch;margin:22px 0 22px;font-size:1.05rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.polaroid{background:var(--surface);color:var(--ink);border-radius:18px;padding:12px 12px 16px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(1.5deg)}
+.polaroid .bar{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.92rem;padding:2px 6px 10px}
+.polaroid .bar small{font-weight:500;color:var(--muted)}
+.polaroid .sticker{position:absolute;right:-6px;bottom:-14px;background:var(--taupe);color:#1F1718;font-style:italic;font-weight:500;padding:6px 14px;border-radius:6px;transform:rotate(-3deg)}
+
+/* video slot */
+.vslot{border-radius:12px;overflow:hidden;background:#3A2C2A;aspect-ratio:16/10;position:relative}
+.vslot video{width:100%;height:100%;display:block;background:#000;object-fit:cover}
+.vslot .fallback{position:absolute;inset:0;display:grid;place-content:center;gap:12px;text-align:center;padding:20px;color:#fff;text-decoration:none;font-weight:600}
+.vslot .play{width:72px;height:72px;border-radius:50%;background:var(--pill);display:grid;place-items:center;margin:0 auto}
+.vslot .play::after{content:"";margin-left:5px;border-left:20px solid #1F1718;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vslot.portrait{aspect-ratio:9/16;width:100%;max-width:340px;border-radius:18px}
+.vlabel{margin:12px 4px 0;font-size:.92rem;color:var(--muted)}
+.admin{margin-top:10px;padding:12px 14px;border:1.5px dashed var(--taupe);border-radius:14px;font-size:.88rem;color:var(--muted);background:var(--surface)}
+.admin input{font:inherit;max-width:100%}
+
+/* tools strip */
+.strip{background:var(--card);color:var(--card-fg);padding-block:22px}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between;align-items:center}
+.strip span{font-weight:700;font-size:1.1rem;letter-spacing:-.02em;opacity:.92}
+
+/* about */
+.about{background:var(--taupe);color:var(--taupe-ink)}
+.about .grid{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.aboutl{display:grid;gap:22px;justify-items:start;min-width:0}
+.me{width:100%;max-width:340px;height:auto;border-radius:26px;display:block;box-shadow:0 16px 34px rgba(0,0,0,.25);transform:rotate(-1.5deg)}
+.pills{display:flex;flex-direction:row;flex-wrap:wrap;gap:12px;align-items:flex-start}
+.pill{background:rgba(255,255,255,.75);color:#1F1718;border-radius:999px;padding:10px 20px;font-weight:700;font-size:.9rem;letter-spacing:.02em}
+.pill b{font-size:1.6rem;letter-spacing:-.03em;margin-right:8px;font-variant-numeric:tabular-nums}
+.notes{background:var(--surface);color:var(--ink);border-radius:22px;padding:26px 28px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.notes .top{display:flex;justify-content:space-between;color:var(--muted);font-weight:600;font-size:.92rem;margin-bottom:10px}
+.notes h2{margin-bottom:14px}
+.notes p{margin:0 0 12px;font-size:.98rem}
+
+/* services */
+.paper{background:var(--bg)}
+.label{display:inline-block;background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 38px;font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.035em;box-shadow:0 8px 20px rgba(0,0,0,.12);transform:rotate(-2deg)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.win{background:var(--card);color:var(--card-fg);border-radius:16px;padding:18px 22px 24px;text-align:center;min-width:0}
+.dots{display:flex;gap:6px;margin-bottom:12px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#F3EEE8;display:block}
+.dots i:nth-child(2){opacity:.7}.dots i:nth-child(3){opacity:.45}
+.win h3{font-size:1.45rem;letter-spacing:-.03em;margin-bottom:8px;text-transform:none;font-weight:700}
+.win p{margin:0;color:var(--card-muted);font-size:.92rem}
+
+.work{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+.wk{border:1.5px solid var(--ink);border-radius:18px;padding:24px;min-width:0;background:var(--surface)}
+.wk h3{font-size:1.9rem;margin-bottom:6px}
+.wk:last-child:nth-child(odd){grid-column:1/-1}
+.wk p{margin:0;color:var(--muted);font-size:.96rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--taupe);color:#1F1718;padding:5px 12px;border-radius:999px;margin-bottom:12px}
+
+/* testimonials */
+.t-grid{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:32px;margin-top:34px;align-items:start}
+.quotes{display:grid;gap:14px;min-width:0}
+blockquote{margin:0;background:var(--card);color:var(--card-fg);border-radius:16px;padding:18px 24px 22px}
+blockquote p{margin:4px 0 12px;font-weight:600;font-size:1.12rem;line-height:1.4;letter-spacing:-.01em}
+blockquote footer{font-size:.84rem;color:var(--card-muted);font-style:italic}
+.stars{color:#F0B84F;letter-spacing:3px;font-size:1rem;margin:2px 0 8px;line-height:1}
+.stars span{color:var(--card-muted);font-size:.85rem;letter-spacing:0;margin-left:8px;font-weight:600}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mini blockquote{min-width:0}
+.mini blockquote p{font-size:.98rem}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.tool{padding:9px 18px;border-radius:999px;background:var(--taupe);color:#1F1718;font-weight:600;font-size:.92rem}
+.tool:nth-child(even){background:var(--card);color:var(--card-fg)}
+
+.contact{background:var(--hero-bg);color:var(--hero-fg);padding-block:64px}
+.contact .wrap{display:flex;justify-content:space-between;gap:28px;align-items:center;flex-wrap:wrap}
+.contact h2{font-size:clamp(2.8rem,8vw,5rem)}
+.contact p{color:var(--hero-muted);margin:12px 0 0}
+.mail{font-weight:700;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:-.02em;user-select:all;overflow-wrap:anywhere;background:var(--pill);color:var(--pill-ink);padding:12px 24px;border-radius:999px}
+.f{background:var(--hero-bg);color:var(--hero-muted);font-size:.85rem;padding-block:0 24px}
+
+/* interactive bits */
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hero-bg)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero-bg);color:var(--hero-fg)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.nav .brand{font-weight:800;letter-spacing:-.03em;font-size:1.15rem;text-decoration:none;color:inherit;white-space:nowrap}
+.nav .links{display:flex;gap:4px;overflow-x:auto;min-width:0;scrollbar-width:none}
+.nav .links a{padding:8px 14px;border-radius:999px;color:var(--hero-muted);text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap}
+.nav .links a:hover,.nav .links a.on{background:var(--pill);color:var(--pill-ink)}
+.tbtn,.copy{font:inherit;font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:999px;border:1.5px solid var(--hero-muted);background:transparent;color:var(--hero-fg);cursor:pointer}
+.tbtn:hover,.copy:hover{background:var(--pill);color:var(--pill-ink)}
+.win{cursor:pointer;transition:transform .2s}
+.win:hover{transform:translateY(-4px)}
+.win .dots{align-items:center}
+.win .plus{margin-left:auto;font-weight:700;font-size:1.2rem;line-height:1;transition:transform .2s}
+.win[aria-expanded=true] .plus{transform:rotate(45deg)}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s}
+.win[aria-expanded=true] .more{grid-template-rows:1fr}
+.more>div{overflow:hidden}
+.more ul{margin:14px 0 0;padding-left:18px;text-align:left;color:var(--card-fg);font-size:.9rem}
+.more li{margin-bottom:4px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.fbtn{font:inherit;font-weight:600;padding:8px 16px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.fbtn[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.mailwrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.polaroid{transition:transform .15s}
+.progress{position:absolute;left:0;bottom:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--taupe)}
+.rv{translate:0 22px;transition:translate .6s cubic-bezier(.2,.7,.2,1)}
+.rv.in{translate:none}
+.win.rv{transition:translate .6s cubic-bezier(.2,.7,.2,1),transform .2s}
+.pill{transition:transform .2s}.pill:hover{transform:translateY(-3px)}
+.wk{cursor:pointer;transition:transform .2s,box-shadow .2s}
+.wk:hover{box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.wk .tog{display:inline-block;margin-top:14px;font-weight:700;font-size:.88rem;text-decoration:underline;text-underline-offset:3px}
+.wk[aria-expanded=true] .more{grid-template-rows:1fr}
+.wk .more ul{margin:12px 0 0;padding-left:18px;color:var(--ink);font-size:.92rem}
+.qstack{display:grid}
+.qstack blockquote{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .35s}
+.qstack blockquote.on{opacity:1;visibility:visible}
+.qstack blockquote p{font-size:1.3rem}
+.qctl{display:flex;align-items:center;gap:12px;margin-top:6px}
+.qbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-size:1.3rem;cursor:pointer;line-height:1}
+.qbtn:hover{background:var(--ink);color:var(--bg)}
+.qdots{display:flex;gap:8px;margin-inline:auto;align-items:center}
+.qdots button{width:10px;height:10px;border-radius:999px;border:0;background:var(--line);cursor:pointer;padding:0;transition:width .2s}
+.qdots button[aria-current=true]{background:var(--ink);width:26px}
+.qcount{font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.tool{transition:opacity .2s,transform .2s}.tool:hover{transform:translateY(-2px)}
+.tool.dim{opacity:.2}
+@keyframes bob{50%{translate:0 -5px}}
+blockquote.float{animation:bob 6s ease-in-out infinite;animation-delay:calc(var(--k,0) * -1.3s)}
+@media (prefers-reduced-motion:reduce){blockquote.float{animation:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.more,.win,.polaroid{transition:none}}
+@media (max-width:820px){
+  .hero .grid,.about .grid,.t-grid{grid-template-columns:minmax(0,1fr)}
+  .cards,.work,.mini{grid-template-columns:1fr}
+  section{padding-block:46px}
+  .polaroid{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main"><div class="wrap"><a class="brand" href="#top">Elaiza Marie Yap</a><div class="links"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></div><button type="button" id="theme" class="tbtn">Light / Dark</button></div><div class="progress" id="progress"></div></nav>
+<header class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <h1>Elaiza Marie Yap</h1>
+      <p class="sub">Customer success specialist and virtual assistant who keeps your inbox, clients, CRM and community moving, so you can focus on growing the business.</p>
+      <div class="chips"><span class="chip">Manila, Philippines</span><span class="chip">Remote since 2015</span><span class="chip">10+ years</span></div>
+      <div class="cta"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#testimonials">Client love</a></div>
+    </div>
+    <div>
+      <div class="polaroid">
+        <div class="bar"><span>Hi, I'm Elaiza</span><small>intro video</small></div>
+        <div class="vslot" data-key="intro" id="v-intro"></div>
+        <span class="sticker">supporting founders since 2015</span>
+      </div>
+      <div id="a-intro"></div>
+    </div>
+  </div>
+</header>
+
+<div class="strip"><div class="wrap"><span>HubSpot</span><span>Canva</span><span>Google Workspace</span><span>ChatGPT</span><span>Claude</span></div></div>
+
+<main>
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div class="aboutl"><img class="me" src="elaiza-photo.jpg" alt="Elaiza Yap, virtual and executive assistant" width="464" height="500">
+    <div class="pills">
+      <span class="pill"><b data-to="10" data-suffix="+">10+</b>years of experience</span>
+      <span class="pill"><b data-to="7500" data-suffix="+">7,500+</b>hours of client work</span>
+      <span class="pill"><b data-to="5" data-dec="1">5.0</b>average client rating</span>
+      <span class="pill">Australia &amp; US clients</span>
+    </div></div>
+    <div class="notes">
+      <div class="top"><span>‹ Notes</span><span>•••</span></div>
+      <h2>About me.</h2>
+      <p>I'm Elaiza, a customer success specialist and virtual assistant for busy business owners who are buried in admin and a never-ending list of to-dos. My expertise covers executive and virtual assistance, client onboarding and support, CRM and data management, social media and community management, lead follow-ups, and finance and admin support.</p>
+      <p>I handle the inbox, calendar, appointments, CRM, reports and day-to-day tasks, so your projects keep moving without you chasing anyone.</p>
+      <p>I've supported founders, real estate agencies and eCommerce brands, and I love turning the processes in your head into clear systems that are easy to delegate.</p>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="services">
+  <div class="wrap">
+    <span class="label">Services</span>
+    <div class="cards">
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>Executive &amp; virtual assistance</h3><p>Inbox and calendar management, scheduling, and day-to-day operational support.</p></div>
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>Customer success &amp; support</h3><p>Client onboarding, support inbox, retention check-ins, and handling concerns with care.</p></div>
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>CRM &amp; data management</h3><p>Accurate records, tracked activity, and organized systems you can rely on.</p></div>
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>Social media &amp; community</h3><p>Comments, DMs, community engagement, Instagram carousels, and Reels editing.</p></div>
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>Lead generation &amp; follow-ups</h3><p>Targeted lead lists, outreach, appointment setting, and follow-ups that close the loop.</p></div>
+      <div class="win"><div class="dots"><i></i><i></i><i></i></div><h3>Finance &amp; admin support</h3><p>Refund coordination, payment tracking, and admin processes handled accurately.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="work" style="padding-top:0">
+  <div class="wrap">
+    <h2>Selected work.</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter work"></div>
+    <div class="work">
+      <div class="wk"><span class="tag">Real estate</span><h3>Virtual assistant, Fisher Property Advocates</h3><p>SOP-formatted property presentation emails, suburb locality reports in Canva, AML onboarding, Instagram deal carousels and Reels, and agent lead lists.</p></div>
+      <div class="wk"><span class="tag">Customer success</span><h3>Customer success, Ecom Capital</h3><p>Onboarding calls, Skool community engagement, a high-volume support inbox, refund coordination, review monitoring, and weekly client check-ins.</p></div>
+      <div class="wk"><span class="tag">Onboarding</span><h3>Onboarding coordinator, LAVU</h3><p>Onboarded new POS customers: contracts, hardware shipment, installation and training timelines, plus training sessions by SMS, email and calls.</p></div>
+      <div class="wk"><span class="tag">Appointment setting</span><h3>Appointment setter, Lice Troopers</h3><p>Booked appointments through inbound calls, SMS and email, handled client inquiries with empathy, managed the clinic calendar, and sent confirmations and reminders to reduce no-shows.</p></div>
+      <div class="wk"><span class="tag">Appointment setting</span><h3>Appointment setter, Keller Williams Realty</h3><p>Made high-volume outbound calls to prospective home sellers, qualified them, booked listing appointments for the broker, and logged call outcomes in the CRM.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="paper" id="testimonials" style="padding-top:0">
+  <div class="wrap">
+    <h2>Client testimonials.</h2>
+    <div class="t-grid">
+      <div>
+        <div class="vslot portrait" data-key="testimonial" id="v-testimonial"></div>
+        <p class="vlabel">Callum Fisher, Director of Fisher Property Advocates</p>
+        <div id="a-testimonial"></div>
+      </div>
+      <div class="quotes">
+        <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“Elaiza has been simply wonderful to work with throughout our time together. Would gladly recommend her to anybody else. She is accountable, outcomes-focused and most importantly just a lovely person. Till next time!”</p><footer>Virtual Assistant for a Real Estate Buyer's Agency, Apr to Jun 2026</footer></blockquote>
+        <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“Elaiza was extremely professional and amazing talking to my Australian prospects and clients. She has good English and is proactive. I highly suggest Elaiza for any work.”</p><footer>HubSpot Maintenance and Customer Support, Sep 2024 to May 2025</footer></blockquote>
+        <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“Elaiza was an excellent solution for our business. Would highly recommend her for anyone looking for an exceptional VA.”</p><footer>Client Onboarding Specialist (eCommerce), Jan to May 2024</footer></blockquote>
+        <div class="mini">
+          <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“...wonderful and a pleasure to work with.”</p><footer>International Brand and Partner Coordinator, Oct 2026</footer></blockquote>
+          <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“Elaiza is very eager to learn &amp; pleasant to work with!”</p><footer>Virtual Assistant for an Online Business</footer></blockquote>
+          <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><p>“Great job.”</p><footer>Cold email and social outreach</footer></blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paper" style="padding-top:0">
+  <div class="wrap">
+    <h2>Skills &amp; tools.</h2>
+    <div class="filters" id="sfilters" role="group" aria-label="Filter skills"></div>
+    <div class="tools">
+      <span class="tool">HubSpot</span><span class="tool">Canva</span><span class="tool">Google Workspace</span><span class="tool">ChatGPT</span><span class="tool">Claude</span><span class="tool">Shopify</span><span class="tool">Skool</span>
+      <span class="tool">Inbox management</span><span class="tool">Scheduling</span><span class="tool">Client onboarding</span><span class="tool">Customer support</span><span class="tool">Community management</span><span class="tool">Lead generation</span><span class="tool">Appointment setting</span><span class="tool">Video editing</span><span class="tool">Social media management</span><span class="tool">Influencer outreach</span><span class="tool">Email marketing</span><span class="tool">Refund coordination</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Ready to get your time back?</h2>
+      <p>Tell me what's piling up and I'll take it from there.</p>
+    </div>
+    <div class="mailwrap"><div class="mail" id="mail">elaizamarieyap@gmail.com</div><button class="copy" id="copy" type="button">Copy email</button></div>
+  </div>
+</section>
+<div class="f"><div class="wrap">Elaiza Marie Yap · Customer Success &amp; Virtual Assistant</div></div>
+
+<script>
+/* Video sources. Empty means the Drive link is shown instead. */
+const VIDEOS = {intro:"intro.mp4", testimonial:"callum-testimonial.mp4"};
+const DRIVE = {
+  intro:"https://drive.google.com/file/d/1N0_h0DfFDv6f_UMc0JCv_nPtp9BLO_x5/view",
+  testimonial:"https://drive.google.com/file/d/1kn4h2EdXqLL0xTWHhi3qBkS5rSoxj9YT/view"
+};
+function mount(key, src){
+  const el=document.getElementById('v-'+key); el.textContent='';
+  if(src){
+    const v=document.createElement('video'); v.controls=true; v.playsInline=true; v.preload='metadata'; v.src=src; el.append(v);
+  }else{
+    const a=document.createElement('a'); a.className='fallback'; a.href=DRIVE[key]; a.target='_blank'; a.rel='noopener';
+    a.innerHTML='<span class="play"></span><span>Watch the video</span>'; el.append(a);
+  }
+}
+for(const k of Object.keys(VIDEOS)) mount(k, VIDEOS[k]);
+
+/* Interactions */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Light / dark toggle */
+$('#theme').addEventListener('click',()=>{
+  const root=document.documentElement, t=root.dataset.theme;
+  const dark=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  root.dataset.theme=dark?'light':'dark';
+});
+
+/* Service cards expand on click */
+const MORE=[
+  ['Inbox and calendar management','Scheduling, reminders and confirmations','Day-to-day operational support'],
+  ['Onboarding calls after the sale','High-volume support inbox and form replies','Weekly check-ins, review monitoring and de-escalation calls'],
+  ['Keeping records accurate and current','Tracking activities and call outcomes','Organized sheets and pipelines'],
+  ['Replying to comments and DMs, and filtering negativity','Community posts and nurturing on Skool','Instagram deal carousels, Story Highlights and Reels'],
+  ['Targeted lead lists of agents and agencies','Inbound and outbound calls, qualifying and booking','Daily follow-ups so no lead goes cold'],
+  ['Refund coordination and tracking sheets','Payment tracking','Client ID and AML documentation']
+];
+$$('.win').forEach((card,i)=>{
+  const plus=document.createElement('span'); plus.className='plus'; plus.textContent='+'; plus.setAttribute('aria-hidden','true'); $('.dots',card).append(plus);
+  const more=document.createElement('div'); more.className='more';
+  more.innerHTML='<div><ul>'+(MORE[i]||[]).map(x=>'<li>'+x+'</li>').join('')+'</ul></div>'; card.append(more);
+  card.tabIndex=0; card.setAttribute('role','button'); card.setAttribute('aria-expanded','false');
+  const toggle=()=>card.setAttribute('aria-expanded', card.getAttribute('aria-expanded')==='true'?'false':'true');
+  card.addEventListener('click',toggle);
+  card.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+});
+
+/* Work filter */
+(()=>{
+  const box=$('#filters'), items=$$('.wk'); if(!box) return;
+  const tags=['All',...new Set(items.map(w=>$('.tag',w).textContent.trim()))];
+  tags.forEach((t,i)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='fbtn'; b.textContent=t; b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',()=>{
+      $$('.fbtn',box).forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true');
+      items.forEach(w=>{ w.hidden = t!=='All' && $('.tag',w).textContent.trim()!==t; });
+    });
+    box.append(b);
+  });
+})();
+
+/* Active nav link */
+if('IntersectionObserver' in window){
+  const links=$$('.nav .links a');
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle('on', a.getAttribute('href')==='#'+e.target.id)); } });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  ['about','services','work','testimonials','contact'].forEach(id=>{ const s=document.getElementById(id); if(s) io.observe(s); });
+
+  /* Count-up stats */
+  if(!reduce){
+    const co=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return; co.unobserve(e.target);
+        const el=e.target, to=+el.dataset.to, dec=+(el.dataset.dec||0), suf=el.dataset.suffix||'', t0=performance.now();
+        const step=n=>{ const p=Math.min(1,(n-t0)/900), v=to*(1-Math.pow(1-p,3));
+          el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+(p===1?suf:'');
+          if(p<1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      });
+    },{threshold:.6});
+    $$('[data-to]').forEach(el=>co.observe(el));
+  }
+}
+
+/* Intro frame tilts with the pointer */
+(()=>{
+  const p=$('.polaroid'); if(!p||reduce||!matchMedia('(hover:hover)').matches) return;
+  p.addEventListener('pointermove',e=>{ const r=p.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-.5; p.style.transform='rotate('+(1.5+x*3)+'deg)'; });
+  p.addEventListener('pointerleave',()=>{ p.style.transform=''; });
+})();
+
+/* Scroll progress bar */
+(()=>{
+  const bar=$('#progress'); if(!bar) return;
+  const upd=()=>{ const h=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'; };
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+
+/* Sections slide in as they appear */
+if('IntersectionObserver' in window && !reduce){
+  const rv=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); rv.unobserve(e.target); } }),{threshold:.08});
+  $$('.win,.wk,.pill,.notes,.me,.label,main h2,.t-grid>div,.tool').forEach(el=>{ el.classList.add('rv'); rv.observe(el); });
+}
+
+/* Work cards open to show the full details */
+const WM=[
+  {m:'Apr to Oct 2026',l:['Prepared SOP-formatted property presentation emails','Built suburb locality reports in Canva','Coordinated AML onboarding and client ID documentation','Designed Instagram deal carousels and edited Reels','Built targeted lead lists of real estate agents and agencies','Handled calls with agents and clients, including follow-ups']},
+  {m:'',l:['Onboarding calls with new clients after the sale','Skool community posts, comments and DMs','High-volume support inbox and support form replies','Daily client and lead follow-ups','Refund coordination and de-escalation calls','Review monitoring and weekly client check-ins']},
+  {m:'2020 to 2023',l:['Introduced new customers to company culture and policies','Managed contracts, hardware shipment, installation and training timelines','Facilitated POS training sessions','Streamlined onboarding processes','Collaborated across teams for a cohesive onboarding experience']},
+  {m:'2017 to 2020',l:['Booked appointments by inbound calls, SMS and email','Handled inquiries with empathy, discretion and accuracy','Managed the clinic calendar to maximize technician availability','Sent confirmations and reminders to reduce no-shows']},
+  {m:'2016 to 2017',l:['High-volume outbound calls to prospective home sellers','Qualified homeowners on motivation, timeline and property details','Booked listing appointments for the broker','Logged outcomes and follow-ups in the CRM']}
+];
+$$('.wk').forEach((card,i)=>{
+  const d=WM[i]; if(!d) return;
+  const tog=document.createElement('span'); tog.className='tog'; tog.textContent='View details +'; card.append(tog);
+  const more=document.createElement('div'); more.className='more';
+  more.innerHTML='<div><ul>'+(d.m?'<li><b>'+d.m+'</b></li>':'')+d.l.map(x=>'<li>'+x+'</li>').join('')+'</ul></div>'; card.append(more);
+  card.tabIndex=0; card.setAttribute('role','button'); card.setAttribute('aria-expanded','false');
+  const toggle=()=>{ const o=card.getAttribute('aria-expanded')==='true'; card.setAttribute('aria-expanded',o?'false':'true'); tog.textContent=o?'View details +':'Hide details −'; };
+  card.addEventListener('click',toggle);
+  card.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+});
+
+/* Testimonials rise and settle as you scroll, then float gently */
+(()=>{
+  if(reduce) return;
+  const qs=$$('blockquote'); if(!qs.length) return;
+  qs.forEach((q,i)=>{ q.style.setProperty('--k',i); q.style.willChange='transform,opacity'; });
+  let tick=false;
+  const upd=()=>{
+    tick=false; const vh=innerHeight;
+    qs.forEach((q,i)=>{
+      const r=q.getBoundingClientRect();
+      let p=(vh*0.98-(i%3)*18-r.top)/(vh*0.3); p=Math.max(0,Math.min(1,p));
+      const e=1-Math.pow(1-p,3);
+      if(p>=1){ q.style.transform=''; q.style.opacity=''; q.classList.add('float'); }
+      else{ q.classList.remove('float'); q.style.opacity=String(.1+.9*e); q.style.transform='translateY('+((1-e)*70)+'px) rotate('+((i%2?1:-1)*(1-e)*2.5)+'deg) scale('+(.96+.04*e)+')'; }
+    });
+  };
+  const req=()=>{ if(!tick){ tick=true; requestAnimationFrame(upd); } };
+  addEventListener('scroll',req,{passive:true}); addEventListener('resize',req); upd();
+})();
+
+/* Skills filter */
+(()=>{
+  const box=$('#sfilters'); if(!box) return;
+  const CATS={'Tools':['HubSpot','Canva','Google Workspace','ChatGPT','Claude','Shopify','Skool'],'Customer support':['Client onboarding','Customer support','Community management','Refund coordination','Appointment setting'],'Admin':['Inbox management','Scheduling'],'Marketing':['Lead generation','Video editing','Social media management','Influencer outreach','Email marketing']};
+  const chips=$$('.tool');
+  ['All',...Object.keys(CATS)].forEach((name,k)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='fbtn'; b.textContent=name; b.setAttribute('aria-pressed',k===0?'true':'false');
+    b.addEventListener('click',()=>{
+      $$('.fbtn',box).forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true');
+      chips.forEach(c=>c.classList.toggle('dim', name!=='All' && !(CATS[name]||[]).includes(c.textContent.trim())));
+    });
+    box.append(b);
+  });
+})();
+
+/* Copy email */
+$('#copy').addEventListener('click',async()=>{
+  const btn=$('#copy'), txt=$('#mail').textContent.trim();
+  try{ await navigator.clipboard.writeText(txt); btn.textContent='Copied!'; }
+  catch(e){ const r=document.createRange(); r.selectNodeContents($('#mail')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Press Ctrl+C'; }
+  setTimeout(()=>{ btn.textContent='Copy email'; },2000);
+});
+
+/* Owner-only upload tool: shows only for editors of this page. */
+(async()=>{
+  let assets=null, db=null;
+  try{ assets=await window.claude?.use('assets'); db=await window.claude?.use('db'); }catch(e){}
+  if(!assets) return;
+  for(const key of Object.keys(VIDEOS)){
+    if(VIDEOS[key]) continue;
+    const box=document.getElementById('a-'+key);
+    box.className='admin';
+    box.innerHTML='<label for="f-'+key+'">Owner tool: upload the '+(key==='intro'?'intro':'testimonial')+' video (MP4, under 20 MB)</label><br><input type="file" id="f-'+key+'" accept="video/mp4,video/quicktime,video/webm"><div id="s-'+key+'" role="status"></div>';
+    const input=box.querySelector('input'), status=box.querySelector('[role=status]');
+    input.addEventListener('change', async()=>{
+      const f=input.files[0]; if(!f) return;
+      status.textContent='Uploading...';
+      try{
+        const r=await assets.upload(f);
+        mount(key, r.url);
+        if(db){ try{ await db.collection('videos').doc(key).set({id:r.id,url:r.url,name:f.name}); }catch(e){} }
+        status.textContent='Uploaded. This is a preview; tell Claude it is done so it can publish it for visitors.';
+      }catch(e){ status.textContent='Upload failed: '+(e&&e.message?e.message:'try a smaller MP4.'); }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
